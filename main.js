@@ -1,7 +1,7 @@
 "use strict"
 
 function renderCoffee(coffee) {
-    var html = '<div class="coffee">';
+    let html = '<div class="coffee">';
     // html += '<td>' + coffee.id + '</td>';
     html += '<h1>' + coffee.name + '</h1>';
     html += '<p id="roast-selection">' + coffee.roast + '</p>';
@@ -11,23 +11,37 @@ function renderCoffee(coffee) {
 }
 
 function renderCoffees(coffees) {
-    var html = '';
-    for(var i = coffees.length - 1; i >= 0; i--) {
+    let html = '';
+    for(let i = coffees.length - 1; i >= 0; i--) {
         html += renderCoffee(coffees[i]);
     }
     return html;
 }
 
+function coffeeSearch(e) {
+    e.preventDefault();
+    let selectedRoast = coffeeName.value;
+    let filteredCoffees = [];
+    coffees.forEach(function (coffee){
+        if (coffee.name === selectedRoast) {
+            filteredCoffees.push(coffee);
+        }
+    });
+    div.innerHTML = renderCoffees(filteredCoffees);
+}
+
+
 function updateCoffees(e) {
     e.preventDefault(); // don't submit the form, we just want to update the data
-    var selectedRoast = roastSelection.value;
-    var filteredCoffees = [];
+    let selectedRoast = roastSelection.value;
+    let filteredCoffees = [];
+    if(selectedRoast === "all") {
+        div.innerHTML = renderCoffees(coffees);
+        return;
+    }
     coffees.forEach(function(coffee) {
         if (coffee.roast === selectedRoast) {
             filteredCoffees.push(coffee);
-        }
-        if(selectedRoast !== 'light' || 'medium' || 'dark') {
-            div.innerHTML = renderCoffees(coffees);
         }
     });
     div.innerHTML = renderCoffees(filteredCoffees);
@@ -51,11 +65,14 @@ var coffees = [
     {id: 14, name: 'French', roast: 'dark'},
 ];
 
+
 var div = document.querySelector('#coffees');
 var submitButton = document.querySelector('#submit');
 var roastSelection = document.querySelector('#roast-selection');
+var coffeeName = document.querySelector("#coffee-name");
 
 div.innerHTML = renderCoffees(coffees);
 
-submitButton.addEventListener('click', updateCoffees);
+submitButton.addEventListener('click', coffeeSearch);
 roastSelection.addEventListener('input', updateCoffees);
+
