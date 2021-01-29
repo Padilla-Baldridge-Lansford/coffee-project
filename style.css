@@ -15,12 +15,15 @@
 hr {
     height: 30px;
     border-style: solid;
-    border-color: #A68C6D;
+    border-color: #403221;
     border-width: 4px 0 0 0;
     border-radius: 20px;
 }
 header {
     background-color: #735C3F;
+    border: solid 2px #403221;
+    font-family: 'Gochi Hand', cursive;
+    font-weight: bold;
 }
 
 .header-img {
@@ -30,6 +33,7 @@ header {
     /*-moz-background-size: 100% auto;*/
     /*-o-background-size: 100% auto;*/
     background-size: 100% auto;
+    margin: auto;
 }
 
 body {
@@ -41,7 +45,8 @@ main {
 }
 
 .btn {
-
+    background-color: #A68C6D;
+    color: white;
 }
 
 
