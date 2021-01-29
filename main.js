@@ -17,18 +17,6 @@ function renderCoffees(coffees) {
     return html;
 }
 
-// function coffeeSearch(e) {
-//     e.preventDefault();
-//     let selectedRoast = coffeeName.value;
-//     let filteredCoffees = [];
-//     coffees.forEach(function (coffee){
-//         if (coffee.name === selectedRoast) {
-//             filteredCoffees.push(coffee);
-//         }
-//     });
-//     coffeeOutput.innerHTML = renderCoffees(filteredCoffees);
-// }
-
 
 function updateCoffees(e) {
     e.preventDefault(); // don't submit the form, we just want to update the data
@@ -47,25 +35,24 @@ function updateCoffees(e) {
     coffeeOutput.innerHTML = renderCoffees(filteredCoffees);
 }
 
-function filterByName(value) {
+function filterByNameAndRoast(value) {
     let filterCoffees = [];
+    let selectedRoast = roastSelection.value;
     for (let i = 0; i < coffees.length; i++) {
         let coffee = coffees[i];
-        let hasMatchingLetters = coffee.name.toLowerCase().search(value)
-        if (hasMatchingLetters > -1) {
+        let hasMatchingLetters = coffee.name.toLowerCase().search(value.toLowerCase()); //new code to lowercase
+        if (hasMatchingLetters > -1 && coffee.roast === selectedRoast) {
             filterCoffees.push(coffee);
+        } else if (hasMatchingLetters > -1 && selectedRoast === 'all') {
+            filterCoffees.push(coffee); //new code for selectedRoast = all
         }
     }
     return filterCoffees
 }
 
 function searchBlendsByName(e) {
-    let searchString = e.target.value
-    coffeeOutput.innerHTML = renderCoffees(filterByName(searchString));
-}
-
-function combinedCoffeeSearch(e) {
-
+    let searchString = e.target.value;
+    coffeeOutput.innerHTML = renderCoffees(filterByNameAndRoast(searchString));
 }
 
 
@@ -88,8 +75,6 @@ var coffees = [
 ];
 
 
-
-
 var coffeeOutput = document.querySelector('#coffees');
 var submitButton = document.querySelector('#submit');
 var roastSelection = document.querySelector('#roast-selection');
@@ -103,3 +88,18 @@ submitButton.addEventListener('click', updateCoffees);
 roastSelection.addEventListener('input', updateCoffees);
 coffeeName.addEventListener("keyup", searchBlendsByName);
 
+
+
+
+
+// function coffeeSearch(e) {
+//     e.preventDefault();
+//     let selectedRoast = coffeeName.value;
+//     let filteredCoffees = [];
+//     coffees.forEach(function (coffee){
+//         if (coffee.name === selectedRoast) {
+//             filteredCoffees.push(coffee);
+//         }
+//     });
+//     coffeeOutput.innerHTML = renderCoffees(filteredCoffees);
+// }
