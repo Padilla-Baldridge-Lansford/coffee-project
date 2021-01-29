@@ -1,10 +1,9 @@
 "use strict"
 
 function renderCoffee(coffee) {
-    let html = '<div class="coffee">';
-    // html += '<td>' + coffee.id + '</td>';
-    html += '<h1>' + coffee.name + '</h1>';
-    html += '<p id="roast-selection">' + coffee.roast + '</p>';
+    let html = '<div class="coffee col-6">';
+    html += '<h1 class="d-inline-block mx-2">' + coffee.name + '</h1>';
+    html += '<p id="roast-selection" class="d-inline-block">' + coffee.roast + '</p>';
     html += '</div>';
 
     return html;
@@ -18,17 +17,17 @@ function renderCoffees(coffees) {
     return html;
 }
 
-function coffeeSearch(e) {
-    e.preventDefault();
-    let selectedRoast = coffeeName.value;
-    let filteredCoffees = [];
-    coffees.forEach(function (coffee){
-        if (coffee.name === selectedRoast) {
-            filteredCoffees.push(coffee);
-        }
-    });
-    div.innerHTML = renderCoffees(filteredCoffees);
-}
+// function coffeeSearch(e) {
+//     e.preventDefault();
+//     let selectedRoast = coffeeName.value;
+//     let filteredCoffees = [];
+//     coffees.forEach(function (coffee){
+//         if (coffee.name === selectedRoast) {
+//             filteredCoffees.push(coffee);
+//         }
+//     });
+//     coffeeOutput.innerHTML = renderCoffees(filteredCoffees);
+// }
 
 
 function updateCoffees(e) {
@@ -36,7 +35,7 @@ function updateCoffees(e) {
     let selectedRoast = roastSelection.value;
     let filteredCoffees = [];
     if(selectedRoast === "all") {
-        div.innerHTML = renderCoffees(coffees);
+        coffeeOutput.innerHTML = renderCoffees(coffees);
         return;
     }
     coffees.forEach(function(coffee) {
@@ -45,7 +44,7 @@ function updateCoffees(e) {
         }
     });
 
-    div.innerHTML = renderCoffees(filteredCoffees);
+    coffeeOutput.innerHTML = renderCoffees(filteredCoffees);
 }
 
 function filterByName(value) {
@@ -62,8 +61,13 @@ function filterByName(value) {
 
 function searchBlendsByName(e) {
     let searchString = e.target.value
-    div.innerHTML = renderCoffees(filterByName(searchString));
+    coffeeOutput.innerHTML = renderCoffees(filterByName(searchString));
 }
+
+function combinedCoffeeSearch(e) {
+
+}
+
 
 // from http://www.ncausa.org/About-Coffee/Coffee-Roasts-Guide
 var coffees = [
@@ -86,15 +90,16 @@ var coffees = [
 
 
 
-var div = document.querySelector('#coffees');
+var coffeeOutput = document.querySelector('#coffees');
 var submitButton = document.querySelector('#submit');
 var roastSelection = document.querySelector('#roast-selection');
 var coffeeName = document.querySelector("#coffee-name");
 
 
-div.innerHTML = renderCoffees(coffees);
+coffeeOutput.innerHTML = renderCoffees(coffees);
 
 
-// submitButton.addEventListener('click', coffeeSearch);
+submitButton.addEventListener('click', updateCoffees);
 roastSelection.addEventListener('input', updateCoffees);
 coffeeName.addEventListener("keyup", searchBlendsByName);
+

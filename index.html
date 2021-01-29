@@ -8,7 +8,13 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<h1 class="text-center">Coffee!</h1>
+
+<header>
+    <div class="container">
+        <h1 class="text-center bg-light jumbotron header-img">Coffee!</h1>
+    </div>
+</header>
+<hr>
 
 <main class="row">
     <section class="col-6">
@@ -34,24 +40,17 @@
                     <!--            <option>dark</option>-->
                     <!--        </select>-->
                     <!--        <input id="submit" type="submit" />-->
-                    <button class="btn btn-primary col-12" id="submit" type="submit">Submit</button>
+                    <button class="btn col-12 mt-3" id="submit" type="submit">Submit</button>
                 </div>
             </form>
         </div>
+        <hr>
     </section>
 
     <section class="col-6">
-        <div class="row">
-            <div id="coffees" class="col-6">
-
-            </div>
-            <!--            <tr>-->
-            <!--                <th>ID</th>-->
-            <!--                    <h1>NAME</h1>-->
-            <!--                    <p>ROAST</p>-->
-            <!--            </tr>-->
-            <!--        <div id="coffees"></div>-->
-        </div>
+        <!--        <div class="row">-->
+        <div id="coffees" class="row"></div>
+        <!--        </div>-->
     </section>
 </main>
 
