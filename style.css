@@ -1,13 +1,3 @@
-/*table {*/
-/*    border-collapse: collapse;*/
-/*    margin: 15px 0;*/
-/*}*/
-
-/*td, th {*/
-/*    border: 1px solid black;*/
-/*    padding: 5px 10px;*/
-/*}*/
-
 #roast-selection {
     color: #735C3F;
 }
@@ -22,31 +12,28 @@ hr {
 header {
     background-color: #735C3F;
     border: solid 2px #403221;
-    font-family: 'Gochi Hand', cursive;
     font-weight: bold;
 }
 
 .header-img {
     background-image: url("img/pexels-bianca-gonçalves-1752806.jpg");
     height: 15em;
-    /*-webkit-background-size: 100% auto;*/
-    /*-moz-background-size: 100% auto;*/
-    /*-o-background-size: 100% auto;*/
     background-size: 100% auto;
     margin: auto;
 }
-
 body {
     background-color: #D8D9D7;
 }
-
 main {
     background-image: url("img/pexels-cottonbro-3944418.jpg");
 }
-
 .btn {
     background-color: #A68C6D;
     color: white;
+}
+h1 {
+    font-family: 'Gochi Hand', cursive;
+    color: #403221;
 }
 
 

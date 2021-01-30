@@ -2,7 +2,7 @@
 
 function renderCoffee(coffee) {
     let html = '<div class="coffee col-6">';
-    html += '<h1 class="d-inline-block mx-2">' + coffee.name + '</h1>';
+    html += '<h1 class="d-inline-block mx-2">' + coffee.name.toUpperCase() + '</h1>';
     html += '<p id="roast-selection" class="d-inline-block">' + coffee.roast + '</p>';
     html += '</div>';
 
@@ -55,6 +55,9 @@ function searchBlendsByName(e) {
     coffeeOutput.innerHTML = renderCoffees(filterByNameAndRoast(searchString));
 }
 
+function addNewCoffee() {
+    var newCoffee = [];
+}
 
 // from http://www.ncausa.org/About-Coffee/Coffee-Roasts-Guide
 var coffees = [
@@ -74,32 +77,28 @@ var coffees = [
     {id: 14, name: 'French', roast: 'dark'},
 ];
 
+coffees = coffees.reverse()
 
 var coffeeOutput = document.querySelector('#coffees');
 var submitButton = document.querySelector('#submit');
 var roastSelection = document.querySelector('#roast-selection');
 var coffeeName = document.querySelector("#coffee-name");
+var newCoffee = document.querySelector("#new-coffee");
+var newRoast = document.querySelector('#new-roast');
+var coffeeSubmitButton = document.querySelector('#submit-new-coffee');
 
 
 coffeeOutput.innerHTML = renderCoffees(coffees);
 
 
-submitButton.addEventListener('click', updateCoffees);
+submitButton.addEventListener('click', searchBlendsByName);
 roastSelection.addEventListener('input', updateCoffees);
 coffeeName.addEventListener("keyup", searchBlendsByName);
+// coffeeSubmitButton.addEventListener("click", )
+
+// localStorage.coffees = coffees;
+// localStorage.coffees += 'new coffee'
+document.getElementById('coffees').innerHTML = renderCoffees(coffees);
 
 
 
-
-
-// function coffeeSearch(e) {
-//     e.preventDefault();
-//     let selectedRoast = coffeeName.value;
-//     let filteredCoffees = [];
-//     coffees.forEach(function (coffee){
-//         if (coffee.name === selectedRoast) {
-//             filteredCoffees.push(coffee);
-//         }
-//     });
-//     coffeeOutput.innerHTML = renderCoffees(filteredCoffees);
-// }

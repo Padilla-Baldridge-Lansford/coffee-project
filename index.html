@@ -16,9 +16,9 @@
         <h1 class="text-center bg-light jumbotron header-img">COFFEE! By: Sam Lansford</h1>
     </div>
 </header>
-<hr>
+<hr class="">
 
-<main class="row">
+<main class="row mx-1">
     <section class="col-6">
         <div class="row">
             <form class="form-group col-12">
@@ -34,25 +34,31 @@
                 <div>
                     <label for="coffee-name">Coffee Name</label>
                     <input type="text" class="form-control" id="coffee-name" name="coffee-name" required>
-
-                    <!--        <label for="roast-selection"></label>-->
-                    <!--        <select id="roast-selection">-->
-                    <!--            <option>light</option>-->
-                    <!--            <option>medium</option>-->
-                    <!--            <option>dark</option>-->
-                    <!--        </select>-->
-                    <!--        <input id="submit" type="submit" />-->
                     <button class="btn col-12 mt-3" id="submit" type="submit">Submit</button>
                 </div>
             </form>
+            <hr class="col-10">
+            <h1 class="col-12 text-center">ADD A COFFEE</h1>
+            <form class="form-group col-12" method="post" action="main.js">
+                <label for="new-roast">Roast</label>
+                <select class="form-control" id="new-roast">
+                    <option value="light">Light</option>
+                    <option value="medium">Medium</option>
+                    <option value="dark">Dark</option>
+                </select>
+            </form>
+            <form class="form-group col-12">
+                <div>
+                    <label for="new-coffee">Coffee Name</label>
+                    <input type="text" class="form-control" id="new-coffee" name="coffee-name" required>
+                    <button class="btn col-12 mt-3" id="submit-new-coffee" type="submit">Submit</button>
+                </div>
+            </form>
         </div>
-        <hr>
     </section>
 
     <section class="col-6">
-        <!--        <div class="row">-->
         <div id="coffees" class="row"></div>
-        <!--        </div>-->
     </section>
 </main>
 
