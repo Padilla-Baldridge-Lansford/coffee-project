@@ -11,7 +11,7 @@ function renderCoffee(coffee) {
 
 function renderCoffees(coffees) {
     let html = '';
-    for(let i = coffees.length - 1; i >= 0; i--) {
+    for (let i = coffees.length - 1; i >= 0; i--) {
         html += renderCoffee(coffees[i]);
     }
     return html;
@@ -22,11 +22,11 @@ function updateCoffees(e) {
     e.preventDefault(); // don't submit the form, we just want to update the data
     let selectedRoast = roastSelection.value;
     let filteredCoffees = [];
-    if(selectedRoast === "all") {
+    if (selectedRoast === "all") {
         coffeeOutput.innerHTML = renderCoffees(coffees);
         return;
     }
-    coffees.forEach(function(coffee) {
+    coffees.forEach(function (coffee) {
         if (coffee.roast === selectedRoast) {
             filteredCoffees.push(coffee);
         }
@@ -75,19 +75,23 @@ var coffees = [
 
 coffees = coffees.reverse();
 
-function storeCoffee(coffees) {
+function storeCoffees(coffees) {
     coffees.forEach((coffee) => {
-        const key = localStorage.key(coffee.id);
-        // console.log(key);
-        if (key === null){
-           let newCoffee = {name: coffee.name, roast: coffee.roast};
-            localStorage.setItem(coffee.id, JSON.stringify(newCoffee));
-        } else {
-            console.log(coffee.id + " Already exist")
-        }
+        storeCoffee(coffee);
     })
 }
-storeCoffee(coffees);
+
+function storeCoffee(coffee) {
+    const storedCoffee = localStorage.getItem(coffee.id);
+    if (storedCoffee === null) {
+        let newCoffee = {name: coffee.name, roast: coffee.roast};
+        localStorage.setItem(coffee.id, JSON.stringify(newCoffee));
+    } else {
+        console.log(coffee.id + " Already exist")
+    }
+}
+
+storeCoffees(coffees);
 
 var coffeeOutput = document.querySelector('#coffees');
 var submitButton = document.querySelector('#submit');
@@ -109,24 +113,17 @@ coffeeSubmitButton.addEventListener("click", addNewCoffee);
 document.getElementById('coffees').innerHTML = renderCoffees(coffees);
 
 
-
 console.log(localStorage);
 
-function addNewCoffee(){
+function addNewCoffee() {
     let newCoffeeForm = document.forms["new-coffee-form"];
     let newCoffeeInput = newCoffeeForm.newCoffee;
     let newRoastInput = newCoffeeForm.newRoast;
     console.log(newCoffeeInput);
     console.log(newRoastInput);
-
-    if (newCoffeeInput) {
-        localStorage.setItem("name", newCoffeeInput);
-    }
-    if (newRoastInput) {
-        localStorage.setItem("roast", newRoastInput);
-    }
+    let id = localStorage.length + 1;
     // location.reload();
-
+    storeCoffee({id: id, name: newCoffeeInput.value, roast: newRoastInput.value})
 
     // coffeeOutput.innerHTML += `${newCoffeeInput}: ${newRoastInput}`;
 }
