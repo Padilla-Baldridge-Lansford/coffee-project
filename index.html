@@ -39,18 +39,16 @@
             </form>
             <hr class="col-10">
             <h1 class="col-12 text-center">ADD A COFFEE</h1>
-            <form class="form-group col-12" method="post" action="main.js">
+            <form class="form-group col-12" method="post" name="new-coffee-form">
                 <label for="new-roast">Roast</label>
-                <select class="form-control" id="new-roast">
+                <select class="form-control" id="new-roast" name="newRoast">
                     <option value="light">Light</option>
                     <option value="medium">Medium</option>
                     <option value="dark">Dark</option>
                 </select>
-            </form>
-            <form class="form-group col-12" method="post">
                 <div>
                     <label for="new-coffee">Coffee Name</label>
-                    <input type="text" class="form-control" id="new-coffee" name="coffee-name" required>
+                    <input type="text" class="form-control" id="new-coffee" name="newCoffee" required="true">
                     <button class="btn col-12 mt-3" id="submit-new-coffee" type="submit">Submit</button>
                 </div>
             </form>

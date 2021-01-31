@@ -75,14 +75,24 @@ var coffees = [
 
 coffees = coffees.reverse();
 
-// JSON.stringify(coffees);
+function storeCoffee(coffees) {
+    coffees.forEach((coffee) => {
+        const key = localStorage.key(coffee.id);
+        // console.log(key);
+        if (key === null){
+           let newCoffee = {name: coffee.name, roast: coffee.roast};
+            localStorage.setItem(coffee.id, JSON.stringify(newCoffee));
+        } else {
+            console.log(coffee.id + " Already exist")
+        }
+    })
+}
+storeCoffee(coffees);
 
 var coffeeOutput = document.querySelector('#coffees');
 var submitButton = document.querySelector('#submit');
 var roastSelection = document.querySelector('#roast-selection');
 var coffeeName = document.querySelector("#coffee-name");
-var newCoffee = document.querySelector("#new-coffee");
-var newRoast = document.querySelector('#new-roast');
 var coffeeSubmitButton = document.querySelector('#submit-new-coffee');
 
 
@@ -92,32 +102,32 @@ coffeeOutput.innerHTML = renderCoffees(coffees);
 submitButton.addEventListener('click', searchBlendsByName);
 roastSelection.addEventListener('input', updateCoffees);
 coffeeName.addEventListener("keyup", searchBlendsByName);
-// coffeeSubmitButton.addEventListener("click", addNewCoffee)
+coffeeSubmitButton.addEventListener("click", addNewCoffee);
 
 // localStorage.coffees = coffees;
 // localStorage.coffees += 'new coffee'
 document.getElementById('coffees').innerHTML = renderCoffees(coffees);
 
-// localStorage.setItem("name", "Sam");
-//
-// console.log(localStorage);
-//
-// function addNewCoffee(){
-//     let newCoffeeInput = newCoffee.value;
-//     let newRoastInput = newRoast.value;
-//
-//     console.log(newCoffeeInput);
-//     console.log(newRoastInput);
-//
-//     if (newCoffeeInput) {
-//         localStorage.setItem("name", newCoffeeInput);
-//     }
-//     if (newRoastInput) {
-//         localStorage.setItem("roast", newRoastInput);
-//     }
-//     location.reload();
-//
-//
-//     coffeeOutput.innerHTML += `${newCoffeeInput}: ${newRoastInput}`;
-// }
+
+
+console.log(localStorage);
+
+function addNewCoffee(){
+    let newCoffeeForm = document.forms["new-coffee-form"];
+    let newCoffeeInput = newCoffeeForm.newCoffee;
+    let newRoastInput = newCoffeeForm.newRoast;
+    console.log(newCoffeeInput);
+    console.log(newRoastInput);
+
+    if (newCoffeeInput) {
+        localStorage.setItem("name", newCoffeeInput);
+    }
+    if (newRoastInput) {
+        localStorage.setItem("roast", newRoastInput);
+    }
+    // location.reload();
+
+
+    // coffeeOutput.innerHTML += `${newCoffeeInput}: ${newRoastInput}`;
+}
 
