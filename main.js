@@ -1,9 +1,9 @@
 "use strict"
 
-function renderCoffee(coffee) {
+function renderCoffee(coffee) {  // coffee param
     let html = '<div class="coffee col-6">';
-    html += '<h1 class="d-inline-block mx-2">' + coffee.name.toUpperCase() + '</h1>';
-    html += '<p id="roast-selection" class="d-inline-block">' + coffee.roast + '</p>';
+    html += '<h1 class="d-inline-block mx-2">' + coffee.name.toUpperCase() + '</h1>'; //  localStorage.getItem(localStorage.name)
+    html += '<p id="roast-selection" class="d-inline-block">' + coffee.roast + '</p>';  // localStorage.getItem(localStorage.roast)
     html += '</div>';
 
     return html;
@@ -16,6 +16,8 @@ function renderCoffees(coffees) {
     }
     return html;
 }
+
+
 
 
 function updateCoffees(e) {
@@ -73,25 +75,37 @@ var coffees = [
     {id: 14, name: 'French', roast: 'dark'},
 ];
 
-coffees = coffees.reverse();
+// function storeCoffees(coffees) {
+//     coffees.forEach((coffee) => {
+//         storeCoffee(coffee);
+//     })
+// }
 
-function storeCoffees(coffees) {
-    coffees.forEach((coffee) => {
-        storeCoffee(coffee);
-    })
-}
+// function storeCoffee(coffee) {
+//     const storedCoffee = localStorage.getItem(coffee.id);
+//     if (storedCoffee === null) {
+//         let newCoffee = {name: coffee.name, roast: coffee.roast};
+//         localStorage.setItem(coffee.id, JSON.stringify(newCoffee));
+//     } else {
+//         console.log(coffee.id + " Already exist")
+//     }
+// }
+//
+// storeCoffees(coffees);
 
-function storeCoffee(coffee) {
-    const storedCoffee = localStorage.getItem(coffee.id);
-    if (storedCoffee === null) {
-        let newCoffee = {name: coffee.name, roast: coffee.roast};
-        localStorage.setItem(coffee.id, JSON.stringify(newCoffee));
-    } else {
-        console.log(coffee.id + " Already exist")
-    }
-}
+// var coffees = function pullCoffeeFromStorage() {
+//     var archive = [],
+//         keys = Object.keys(localStorage),
+//         i = 0, key;
+//
+//     for (; key = keys[i]; i++) {
+//         archive.push(key + '=' + localStorage.getItem(key));
+//     }
+//
+//     return archive;
+// };
 
-storeCoffees(coffees);
+
 
 var coffeeOutput = document.querySelector('#coffees');
 var submitButton = document.querySelector('#submit');
