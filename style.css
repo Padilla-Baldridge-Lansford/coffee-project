@@ -1,7 +1,6 @@
 #roast-selection {
     color: #735C3F;
 }
-
 hr {
     height: 30px;
     border-style: solid;
@@ -14,7 +13,6 @@ header {
     border: solid 2px #403221;
     font-weight: bold;
 }
-
 .header-img {
     background-image: url("img/pexels-bianca-gonçalves-1752806.jpg");
     height: 15em;
